@@ -1,0 +1,48 @@
+{
+  "candidate": {
+    "author": "author@example.invalid",
+    "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "revision": "1111111111111111111111111111111111111111"
+  },
+  "checks": {
+    "build": {
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "evidence_uri": "https://evidence.example.invalid/report/fixture",
+      "observed_at": "2026-10-10T09:00:00+00:00",
+      "revision": "1111111111111111111111111111111111111111",
+      "status": "passed"
+    },
+    "tests": {
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "evidence_uri": "https://evidence.example.invalid/report/fixture",
+      "observed_at": "2026-10-10T09:00:00+00:00",
+      "revision": "1111111111111111111111111111111111111111",
+      "status": "passed"
+    }
+  },
+  "review": {
+    "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "evidence_uri": "https://evidence.example.invalid/report/fixture",
+    "observed_at": "2026-10-10T09:00:00+00:00",
+    "reviewer": "reviewer@example.invalid",
+    "revision": "1111111111111111111111111111111111111111",
+    "status": "passed"
+  },
+  "rights": {
+    "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "evidence_uri": "https://evidence.example.invalid/report/fixture",
+    "license_id": "MIT",
+    "observed_at": "2026-10-10T09:00:00+00:00",
+    "revision": "1111111111111111111111111111111111111111",
+    "rights_status": "allowed",
+    "status": "passed"
+  },
+  "rollback": {
+    "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "evidence_uri": "https://evidence.example.invalid/report/fixture",
+    "observed_at": "2026-10-10T09:00:00+00:00",
+    "revision": "1111111111111111111111111111111111111111",
+    "status": "passed"
+  },
+  "version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "allowed_licenses": [
+    "MIT",
+    "Apache-2.0"
+  ],
+  "allowed_reviewers": [
+    "reviewer@example.invalid",
+    "author@example.invalid"
+  ],
+  "max_age_seconds": 3600,
+  "max_future_seconds": 60,
+  "required_checks": [
+    "tests",
+    "build"
+  ],
+  "version": 1
+}
