@@ -309,6 +309,31 @@ class InputAndCliTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "input_too_large"):
             gate.load_json(self.mp)
 
+    def test_overflowed_json_numbers_are_rejected_at_every_depth(self):
+        for value in ("1e999", "-1e999", "1.7976931348623159e308"):
+            for raw in (value, '[' + value + ']', '{"nested":[' + value + ']}'):
+                with self.subTest(raw=raw):
+                    self.mp.write_text(raw, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, "non_finite_json_number"):
+                        gate.load_json(self.mp)
+
+    def test_finite_json_float_parsing_is_preserved(self):
+        raw = '[0.0,-0.0,1.25,-2.5,1e308,-1e308,1e-999,1.7976931348623157e308]'
+        self.mp.write_text(raw, encoding="utf-8")
+        self.assertEqual(gate.load_json(self.mp), json.loads(raw))
+
+    def test_cli_overflow_in_manifest_or_policy_is_input_error(self):
+        for target in (self.mp, self.pp):
+            for value in ("1e999", "-1e999"):
+                with self.subTest(target=target.name, value=value):
+                    before = target.read_text(encoding="utf-8")
+                    target.write_text('{"nested":[' + value + ']}', encoding="utf-8")
+                    code, report = self.cli()
+                    self.assertEqual(code, 2)
+                    self.assertEqual(report["metadata_gate"], "blocked")
+                    self.assertIs(report["release_authorized"], False)
+                    target.write_text(before, encoding="utf-8")
+
     def test_cli_passes_and_only_reads_inputs(self):
         before = {path: path.read_bytes() for path in self.root.iterdir()}
         with patch("socket.socket", side_effect=AssertionError("network forbidden")):
