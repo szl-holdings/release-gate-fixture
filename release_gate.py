@@ -1,6 +1,7 @@
 """Offline metadata consistency fixture. A passing result never authorizes release."""
 import argparse
 import json
+import math
 import re
 import sys
 from datetime import datetime, timezone
@@ -185,13 +186,20 @@ def reject_constant(_value):
     raise ValueError("non_finite_json_number")
 
 
+def finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("non_finite_json_number")
+    return number
+
+
 def load_json(path):
     with Path(path).open("rb") as stream:
         raw = stream.read(MAX_INPUT_BYTES + 1)
     if len(raw) > MAX_INPUT_BYTES:
         raise ValueError("input_too_large")
     return json.loads(raw.decode("utf-8"), object_pairs_hook=reject_duplicates,
-                      parse_constant=reject_constant)
+                      parse_constant=reject_constant, parse_float=finite_float)
 
 
 def main(argv=None):
