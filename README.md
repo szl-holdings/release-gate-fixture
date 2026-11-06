@@ -79,3 +79,5 @@ The fixture validates supplied metadata. It does not verify a signature, fetch a
 No result grants release authority. A real release controller would need its own trusted evidence retrieval, authentication, artifact verification and authorization path. This repository provides no provider publisher or deployed application.
 
 <sub>The native Orbit v2 artwork is from [SZL Holdings / szl-brand](https://github.com/szl-holdings/szl-brand/tree/4309f6fce89179331b0b3ed8c99494e76c5be256), reused with its [CC BY 4.0 attribution and trademark notices](https://github.com/szl-holdings/szl-brand/blob/4309f6fce89179331b0b3ed8c99494e76c5be256/NOTICE). This attribution does not assign a new license to the fixture's source code.</sub>
+
+Estate on Hugging Face: models, datasets and Spaces are published under the [SZLHOLDINGS](https://huggingface.co/SZLHOLDINGS) org.
