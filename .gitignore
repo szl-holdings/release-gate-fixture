@@ -1,0 +1,11 @@
+# Python bytecode and test caches (never commit these)
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments and build outputs
+.venv/
+venv/
+build/
+dist/
+*.egg-info/

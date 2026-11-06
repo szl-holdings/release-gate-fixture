@@ -19,10 +19,17 @@ An offline, fail-closed fixture for checking whether release metadata agrees wit
 
 ## Start here
 
-The evaluator uses Python 3 and its standard library. Run both existing test modules from the repository root:
+The evaluator uses Python 3 and its standard library. Run the three test modules from the repository root:
 
 ```bash
-python -m unittest -v test_release_gate review_tests
+python -m unittest -v test_release_gate review_tests test_repo_contract
+```
+
+Installing is optional. `python -m pip install .` installs the single module `release_gate` with no dependencies; it then also runs as `python -m release_gate`. To use pytest instead, install the test extra and run it from the repository root, where it collects the same three modules:
+
+```bash
+python -m pip install -e '.[test]'
+python -m pytest
 ```
 
 The checked-in examples contain synthetic identities, repeated-character revisions and digests, and reserved `.invalid` evidence URLs. Reproduce their metadata-consistent case with the explicit fixture clock:
@@ -69,6 +76,7 @@ The caller supplies the trusted policy, candidate revision, artifact digest, can
 | [example-manifest.json](./example-manifest.json) | Synthetic metadata aligned with that policy and the example candidate pins. |
 | [test_release_gate.py](./test_release_gate.py) | Evaluator, parsing, boundary and CLI regression tests. |
 | [review_tests.py](./review_tests.py) | Additional adversarial input, clock, size and read-only behavior regressions. |
+| [test_repo_contract.py](./test_repo_contract.py) | Repository contract checks: the installed module set, this README's example, exit codes and size limit, and that CI, the *Start here* command and pytest each run every test module. |
 
 The CLI writes a JSON result to standard output. Exit code `0` means metadata consistency passed, `1` means a validation rule blocked it, and `2` means the input files or clock could not be loaded or parsed. Argument-parser usage errors also exit with code `2`.
 

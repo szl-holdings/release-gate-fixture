@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "release-gate-fixture"
+# Unreleased: the repository has no tags or GitHub releases yet.
 version = "0.1.0"
 description = "Offline metadata gate. release_authorized stays false. Not a production authorization service."
 readme = "README.md"
@@ -11,13 +12,26 @@ requires-python = ">=3.11"
 license = "Apache-2.0"
 authors = [{ name = "Stephen Lutar", email = "stephen@szlholdings.com" }]
 dependencies = []
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+# The suites are stdlib unittest; pytest is an optional runner for all of them.
+test = ["pytest>=8"]
 
 [project.urls]
 Homepage = "https://a-11-oy.com"
-Repository = "https://github.com/szl-holdings/release-gate-fixture"
+Source = "https://github.com/szl-holdings/release-gate-fixture"
+Issues = "https://github.com/szl-holdings/release-gate-fixture/issues"
 
 [tool.setuptools]
-py-modules = ["release_gate", "review_tests"]
+# Ship the evaluator only. The test modules stay in the checkout.
+py-modules = ["release_gate"]
 
 [tool.ruff]
 line-length = 120
@@ -25,4 +39,6 @@ target-version = "py311"
 extend-exclude = ["build", "dist", ".venv", "node_modules"]
 
 [tool.pytest.ini_options]
-minversion = "7.0"
+minversion = "8.0"
+# review_tests.py does not match pytest's default test_*.py / *_test.py patterns.
+python_files = ["test_*.py", "*_tests.py"]
