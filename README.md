@@ -25,6 +25,13 @@ The evaluator uses Python 3 and its standard library. Run the three test modules
 python -m unittest -v test_release_gate review_tests test_repo_contract
 ```
 
+Installing is optional. `python -m pip install .` installs the single module `release_gate` with no dependencies; it then also runs as `python -m release_gate`. To use pytest instead, install the test extra and run it from the repository root, where it collects the same three modules:
+
+```bash
+python -m pip install -e '.[test]'
+python -m pytest
+```
+
 The checked-in examples contain synthetic identities, repeated-character revisions and digests, and reserved `.invalid` evidence URLs. Reproduce their metadata-consistent case with the explicit fixture clock:
 
 ```bash
