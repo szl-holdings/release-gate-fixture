@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please credit SZL Holdings."
+title: "release-gate-fixture - Offline metadata gate. release_authorized stays false. Not a production authorization service (SZL Holdings governed-AI estate)"
+authors:
+  - name: SZL Holdings
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/szl-holdings/release-gate-fixture"
+keywords:
+  - governed-ai
+  - provenance
+  - szl-holdings
